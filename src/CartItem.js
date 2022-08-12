@@ -6,7 +6,7 @@ class CartItem extends React.Component{
         this.state={
             price:9999,
             title:'Smart Watch',
-            qty:4,
+            qty:5,
             img: ''
         
         }  
@@ -29,11 +29,11 @@ class CartItem extends React.Component{
                   <div className="cart-item-actions"> 
                   <img 
                   alt="increase" 
-                  className="action-icons" src="https://cdn-icons.flaticon.com/png/128/2040/premium/2040520.png?token=exp=1649644082~hmac=3a6cb9b104bd1c988d8f6ab2b6b573f5"
+                  className="action-icons" src="https://cdn-icons-png.flaticon.com/512/875/875068.png"
                   onClick={this.increaseQuantity} />
                   <img
                    alt="decrease" 
-                   className="action-icons" src="https://cdn-icons.flaticon.com/png/128/2040/premium/2040522.png?token=exp=1649644162~hmac=551178ede7b4f23c27ace4ee31d09e09"/>
+                   className="action-icons" src="https://cdn-icons.flaticon.com/png/512/4153/premium/4153143.png?token=exp=1659691409~hmac=a8cdadd829b7a5befb0d980bebf76031"/>
                   
                   <img 
                   alt="delete" 
