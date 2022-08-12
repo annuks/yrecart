@@ -4,17 +4,45 @@ class CartItem extends React.Component{
     constructor (){
         super();
         this.state={
-            price:9999,
-            title:'Smart Watch',
-            qty:5,
+            price:19999,
+            title:'Sound System',
+            qty:1,
             img: ''
         
         }  
-        // this.increaseQuantity=this.increaseQuantity.bind(this);
+         //this.increaseQuantity=this.increaseQuantity.bind(this);
     } 
         increaseQuantity=()=>{
-            console.log('this',this.state);
+            // console.log(this.state);
+            // this.state.qty +=1;
+
+            // shallow merging
         
+            //set state type 1
+            // this.setState({
+            //     qty:this.state.qty  +1,
+
+            // });
+
+            //set state type 2( if previos state needed)
+
+            this.setState((prevState)=>{
+                return{
+                    qty:prevState.qty +1
+                }
+
+            })
+        }
+        decreaseQuantity=()=>{
+            const {qty} = this.state;
+            if(qty == 0){
+                return;
+            }
+        this.setState((prevState)=>{
+            return{
+                qty:this.state.qty -1
+            }
+        })
     }
     render(){
         const{price, title,qty}=this.state;
@@ -33,11 +61,14 @@ class CartItem extends React.Component{
                   onClick={this.increaseQuantity} />
                   <img
                    alt="decrease" 
-                   className="action-icons" src="https://cdn-icons.flaticon.com/png/512/4153/premium/4153143.png?token=exp=1659691409~hmac=a8cdadd829b7a5befb0d980bebf76031"/>
-                  
+                   className="action-icons" src="https://cdn-icons-png.flaticon.com/512/54/54373.png"
+                  onClick = {this.decreaseQuantity}/>
                   <img 
                   alt="delete" 
-                  className="action-icons" src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png"/>
+                  className="action-icons" src="https://cdn-icons-png.flaticon.com/128/1214/1214428.png"
+                    // onClick={deleteItem}
+
+                    />
                   </div>        
               </div>    
             </div>
@@ -48,8 +79,8 @@ class CartItem extends React.Component{
     }
     const style = {
        image: {
-           height:110,
-           width:100,
+           height:100,
+           width:110,
            borderRadious:4,
            background:'#ccc',
 
