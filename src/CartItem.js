@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 class CartItem extends React.Component{
-    constructor (){
-        super();
-        this.state={
-            price:19999,
-            title:'Sound System',
-            qty:1,
-            img: ''
-        
-        }  
-         //this.increaseQuantity=this.increaseQuantity.bind(this);
-    } 
+     
         increaseQuantity=()=>{
             // console.log(this.state);
             // this.state.qty +=1;
@@ -35,7 +25,7 @@ class CartItem extends React.Component{
         }
         decreaseQuantity=()=>{
             const {qty} = this.state;
-            if(qty == 0){
+            if(qty === 0){
                 return;
             }
         this.setState((prevState)=>{
@@ -45,15 +35,19 @@ class CartItem extends React.Component{
         })
     }
     render(){
-        const{price, title,qty}=this.state;
+        //console.log('this.props',this.props)
+        const{price, title,qty}=this.props.product;
         return(
-            <div className="CartItem">
-          <div className="left-block">
+            <div className="cart-item"> 
+         {/* {this.props.jsx} */}
+            <div className="left-block">
+          <img style={styles.image} />
+        </div>
               <div className="right-block">
-                  <img style={style.image}/>
-                  <div style={ {fontSize:23}}>{title}</div> 
-                  <div style={ {color:'#777'}}>Rs  {price}</div>
-                  <div style={ {color:'#777'}}>Qty:  {qty}</div>
+                  <img styles={styles.image}/>
+                  <div styles={ {fontSize:23}}>{title}</div> 
+                  <div styles={ {color:'#777'}}>Rs  {price}</div>
+                  <div styles={ {color:'#777'}}>Qty:  {qty}</div>
                   <div className="cart-item-actions"> 
                   <img 
                   alt="increase" 
@@ -72,12 +66,12 @@ class CartItem extends React.Component{
                   </div>        
               </div>    
             </div>
-            </div>
+            
         );
     
         }
     }
-    const style = {
+    const styles = {
        image: {
            height:100,
            width:110,
