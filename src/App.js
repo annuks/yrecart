@@ -2,11 +2,8 @@ import React from 'react';
 import CartItem from './CartItem';
 import Cart  from './Cart';
 import Navbar from './Navbar';
-// import firebase from 'firebase/compat/app';
-
-// import 'firebase/compat/auth';
-// import 'firebase/compat/firestore';
-
+import { db } from './index';
+import { collection , getDocs } from "firebase/firestore";
 
 class App extends React.Component {
 
@@ -45,29 +42,19 @@ class App extends React.Component {
      
 }
 
-componentDidMount(){
-
-  firebase
-  .firestore()
-  .collection('products')
-  .get()
-  .then((snapshot)=>{
-    console.log(snapshot);
-snapshot.docs.map((doc)=>{
-  console.log(doc.data());
-});
-
-const products = snapshot.docs.map((doc)=>{
-  const data =doc.data();
-  data['id']= doc.id
-  return data;
-})
-this.setState({
-  products,
-  loading:false
-})
-
-  })
+async componentDidMount(){
+    // const colRef = await collection(db,"products");
+    let products = [];
+    const querySnapshot = await getDocs(collection(db, "products"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      // console.log(doc.id, " => ", doc.data());
+      products.push(doc.data());
+    });
+    this.setState({
+      products
+    })
+ 
 }
 
 
@@ -80,7 +67,6 @@ handleIncreaseQuantity = (product) =>{
     products[index].qty +=1 ;
     this.setState({
         products
-
     })
 
 }
